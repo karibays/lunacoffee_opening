@@ -1,0 +1,156 @@
+import telebot
+from telebot import types
+from datetime import datetime
+from loguru import logger
+import pandas as pd
+import requests
+from google_sheets import GoogleAPI
+from save_data_manually import Saver
+
+
+# The bot's token. You can access it from @BotFather
+TOKEN = "7019876636:AAETMVjAKdp1YLYnwBEs8N2-g-eXSujwtvs"
+bot = telebot.TeleBot(TOKEN)
+
+SPREADSHEET_ID = "1zPZ0yC5iqtNpfFtmV_YJx2bEdvRcnukhplb3DQFUTqI"
+
+# Logging parameters
+logger.add("logs/logs.log", rotation="1 day", compression="zip")
+
+
+# Users' answers
+user_data = {}
+user_reports = {}
+
+# Decorator
+def check_restart(f):
+    def inner(message):
+        if message.text == '/restart':
+            restart(message)
+        elif message.text == '/start':
+            bot.reply_to(message, "Используйте команду '/restart' для того, чтобы начать заново. Команда /start используется для начало опроса")
+            restart(message)
+        else:
+            f(message)
+    return inner
+
+# Static markup
+def create_static_markup():
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    markup.add('Сделать отметку')
+
+    return markup
+
+def create_yes_no_markup():
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    markup.add('Да', 'Нет')
+
+    return markup
+
+# If user sends '/start', then the bot starts a survey 
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    chat_id = message.chat.id
+    user_data[chat_id] = {}
+
+    # logging
+    logger.info(f"User-{message.chat.id} opened the chat")
+
+    markup = create_static_markup()
+    bot.send_message(message.chat.id, "Добро пожаловать! Нажмите 'Сделать отметку', чтобы начать.", reply_markup=markup)
+
+# If '/restart' was sent, then the bot restarts the survey
+def restart(message):
+    user_data[message.chat.id] = {}
+    send_welcome(message)
+
+# The start of the survey
+@bot.message_handler(func=lambda message: message.text == "Сделать отметку")
+
+@check_restart
+def question_1(message):
+    user_data[message.chat.id] = {}
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    for cafe in [
+        'Мәңгілік Ел 37',
+        'Мәңгілік Ел 40',
+        'Мухамедханов',
+        'Таха Хусейна 2/1',
+        'Тәуелсіздік 34']:
+
+        markup.add(cafe)
+    msg = bot.send_message(message.chat.id, "Выберите точку", reply_markup=markup)
+
+    bot.register_next_step_handler(msg, question_2)
+
+
+@check_restart
+def question_2(message):
+    text = message.text
+    if text in ['Мәңгілік Ел 37', 'Мәңгілік Ел 40', 'Мухамедханов', 'Таха Хусейна 2/1', 'Тәуелсіздік 34']:
+        current_datetime = datetime.now()
+        current_date = current_datetime.date()
+        current_time = current_datetime.time()
+
+        user_data[message.chat.id]['Дата'] = str(current_date)
+        user_data[message.chat.id]['Время'] = str(current_time)
+
+        user_data[message.chat.id]['Точка'] = message.text
+    else:
+        msg = bot.send_message(message.chat.id, "Пожалуйста, выберите из списка")
+        bot.register_next_step_handler(msg, question_2)
+        return    
+
+    markup = create_yes_no_markup()
+    msg = bot.send_message(message.chat.id, "Ваше имя")
+
+    bot.register_next_step_handler(msg, finish_survey)
+
+
+@check_restart
+def finish_survey(message):
+    user_data[message.chat.id]['Имя баристы'] = message.text
+
+    markup = create_static_markup()
+    msg = bot.send_message(message.chat.id, 'Вы отметились!', reply_markup=markup)
+
+    # Saving data to google sheets
+    logger.info("Trying to save user data to the google sheets...")
+    save_survey_data_to_google_sheets(message.chat.id) 
+
+    
+def save_survey_data_to_google_sheets(chat_id):
+    values = [list(user_data[chat_id].values())]
+    print(values)
+
+    if not GoogleAPI().check_token_expicicy_and_refresh():
+        logger.info("Token is valid")
+    else:
+        logger.error("Failed to refresh the token while saving user data to google sheets")
+        return
+
+    try: 
+        GoogleAPI().append_values(
+            spreadsheet_id=SPREADSHEET_ID,
+            range_name='A:Z',
+            value_input_option="USER_ENTERED",
+            values=values,
+        ) # type: ignore
+    except:
+        logger.error("Failed to save the data to google sheets!")
+
+    Saver().save_user_data_manually(values)
+
+
+# --------------------START--------------------
+import os, sys
+from requests.exceptions import ConnectionError, ReadTimeout
+
+try:
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)
+except (ConnectionError, ReadTimeout) as e:
+    sys.stdout.flush()
+    os.execv(sys.argv[0], sys.argv)
+else:
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)

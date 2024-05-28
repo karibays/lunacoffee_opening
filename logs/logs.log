@@ -1,0 +1,18 @@
+2024-05-28 14:15:31.884 | INFO     | __main__:send_welcome:57 - User-507500572 opened the chat
+2024-05-28 14:16:24.818 | INFO     | __main__:send_welcome:57 - User-507500572 opened the chat
+2024-05-28 14:16:53.626 | INFO     | __main__:send_welcome:57 - User-507500572 opened the chat
+2024-05-28 14:16:59.718 | INFO     | __main__:finish_survey:119 - Trying to save user data to the google sheets...
+2024-05-28 14:17:00.275 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-05-28 14:17:00.276 | INFO     | __main__:save_survey_data_to_google_sheets:127 - Token is valid
+2024-05-28 14:17:00.448 | ERROR    | __main__:save_survey_data_to_google_sheets:140 - Failed to save the data to google sheets!
+2024-05-28 14:17:00.838 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-05-28 14:18:50.179 | INFO     | __main__:finish_survey:119 - Trying to save user data to the google sheets...
+2024-05-28 14:18:50.681 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-05-28 14:18:50.682 | INFO     | __main__:save_survey_data_to_google_sheets:128 - Token is valid
+2024-05-28 14:18:50.847 | ERROR    | __main__:save_survey_data_to_google_sheets:141 - Failed to save the data to google sheets!
+2024-05-28 14:18:51.140 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-05-28 14:20:22.601 | INFO     | __main__:finish_survey:119 - Trying to save user data to the google sheets...
+2024-05-28 14:20:23.121 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-05-28 14:20:23.122 | INFO     | __main__:save_survey_data_to_google_sheets:128 - Token is valid
+2024-05-28 14:20:24.533 | SUCCESS  | google_sheets:append_values:62 - 4 cells appended.
+2024-05-28 14:20:24.815 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
