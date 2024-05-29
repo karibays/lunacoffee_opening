@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-from datetime import datetime
+from datetime import datetime, timedelta
 from loguru import logger
 import pandas as pd
 import requests
@@ -75,7 +75,7 @@ def question_1(message):
     for cafe in [
         'Мәңгілік Ел 37',
         'Мәңгілік Ел 40',
-        'Мухамедханов',
+        'Мухамедханоа',
         'Таха Хусейна 2/1',
         'Тәуелсіздік 34']:
 
@@ -88,10 +88,10 @@ def question_1(message):
 @check_restart
 def question_2(message):
     text = message.text
-    if text in ['Мәңгілік Ел 37', 'Мәңгілік Ел 40', 'Мухамедханов', 'Таха Хусейна 2/1', 'Тәуелсіздік 34']:
-        current_datetime = datetime.now()
+    if text in ['Мәңгілік Ел 37', 'Мәңгілік Ел 40', 'Мухамедханова', 'Таха Хусейна 2/1', 'Тәуелсіздік 34']:
+        current_datetime = datetime.now() + timedelta(hours=5)
         current_date = current_datetime.date()
-        current_time = current_datetime.time()
+        current_time = current_datetime.time() 
 
         user_data[message.chat.id]['Дата'] = str(current_date)
         user_data[message.chat.id]['Время'] = str(current_time)
@@ -105,12 +105,22 @@ def question_2(message):
     markup = create_yes_no_markup()
     msg = bot.send_message(message.chat.id, "Ваше имя")
 
+    bot.register_next_step_handler(msg, question_3)
+
+
+@check_restart
+def question_3(message):
+    user_data[message.chat.id]['Имя'] = message.text
+
+    msg = bot.send_message(message.chat.id, "Ваша фамилия")
+
     bot.register_next_step_handler(msg, finish_survey)
 
 
 @check_restart
 def finish_survey(message):
-    user_data[message.chat.id]['Имя баристы'] = message.text
+    user_data[message.chat.id]['Фамилия'] = message.text
+    user_data[message.chat.id]['ID'] = message.chat.id
 
     markup = create_static_markup()
     msg = bot.send_message(message.chat.id, 'Вы отметились!', reply_markup=markup)
@@ -141,6 +151,19 @@ def save_survey_data_to_google_sheets(chat_id):
         logger.error("Failed to save the data to google sheets!")
 
     Saver().save_user_data_manually(values)
+    notify_manager_about_late_opening(values)
+
+
+def notify_manager_about_late_opening(values):
+    opening_time = pd.to_datetime(values[0][1]).time()
+    address = values[0][2]
+    name = values[0][3]
+    surname = values[0][4]
+
+    check_time = pd.to_datetime('7:30:00').time()
+
+    if opening_time > check_time:
+        bot.send_message(6655437078, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {opening_time}")
 
 
 # --------------------START--------------------
