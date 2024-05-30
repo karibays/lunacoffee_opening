@@ -180,7 +180,7 @@ def notify_manager_about_late_opening(values):
 
     # 6655437078
     if opening_time > check_time:
-        bot.send_message(507500572, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {str(opening_time)[:8]}")
+        bot.send_message(6655437078, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {str(opening_time)[:8]}")
 
 
 # --------------------START--------------------
