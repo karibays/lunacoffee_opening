@@ -38,6 +38,7 @@ def check_restart(f):
 def create_static_markup():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     markup.add('Сделать отметку')
+    markup.add('Сделать замену')
 
     return markup
 
@@ -57,7 +58,7 @@ def send_welcome(message):
     logger.info(f"User-{message.chat.id} opened the chat")
 
     markup = create_static_markup()
-    bot.send_message(message.chat.id, "Добро пожаловать! Нажмите 'Сделать отметку', чтобы начать.", reply_markup=markup)
+    bot.send_message(message.chat.id, "Добро пожаловать!\n\nСделать отметку - для открытия смены\nСделать замену - для замены", reply_markup=markup)
 
 # If '/restart' was sent, then the bot restarts the survey
 def restart(message):
@@ -65,7 +66,7 @@ def restart(message):
     send_welcome(message)
 
 # The start of the survey
-@bot.message_handler(func=lambda message: message.text == "Сделать отметку")
+@bot.message_handler(func=lambda message: message.text == "Сделать отметку" or "Сделать замену")
 
 @check_restart
 def question_1(message):
@@ -81,6 +82,11 @@ def question_1(message):
 
         markup.add(cafe)
     msg = bot.send_message(message.chat.id, "Выберите точку", reply_markup=markup)
+
+    if message.text == 'Сделать отметку':
+        user_data[message.chat.id]['Статус'] = 'Отметка'
+    else:
+        user_data[message.chat.id]['Статус'] = 'Замена'
 
     bot.register_next_step_handler(msg, question_2)
 
@@ -123,7 +129,11 @@ def finish_survey(message):
     user_data[message.chat.id]['ID'] = message.chat.id
 
     markup = create_static_markup()
-    msg = bot.send_message(message.chat.id, 'Вы отметились!', reply_markup=markup)
+
+    if user_data[message.chat.id]['Статус'] == 'Отметка':
+        msg = bot.send_message(message.chat.id, 'Вы отметились!', reply_markup=markup)
+    else:
+        msg = bot.send_message(message.chat.id, 'Вы заменились!', reply_markup=markup)
 
     # Saving data to google sheets
     logger.info("Trying to save user data to the google sheets...")
@@ -131,8 +141,12 @@ def finish_survey(message):
 
     
 def save_survey_data_to_google_sheets(chat_id):
-    values = [list(user_data[chat_id].values())]
-    print(values)
+    from collections import OrderedDict
+
+    desired_order = ['Дата', 'Время', 'Точка', 'Статус', 'Имя', 'Фамилия', 'ID']
+    ordered_dict = OrderedDict((key, user_data[chat_id][key]) for key in desired_order)
+
+    values = [list(ordered_dict.values())]
 
     if not GoogleAPI().check_token_expicicy_and_refresh():
         logger.info("Token is valid")
@@ -151,19 +165,22 @@ def save_survey_data_to_google_sheets(chat_id):
         logger.error("Failed to save the data to google sheets!")
 
     Saver().save_user_data_manually(values)
-    notify_manager_about_late_opening(values)
+
+    if user_data[chat_id]['Статус'] == 'Отметка':
+        notify_manager_about_late_opening(user_data[chat_id])
 
 
 def notify_manager_about_late_opening(values):
-    opening_time = pd.to_datetime(values[0][1]).time()
-    address = values[0][2]
-    name = values[0][3]
-    surname = values[0][4]
+    opening_time = pd.to_datetime(values['Время']).time()
+    address = values['Точка']
+    name = values['Имя']
+    surname = values['Фамилия']
 
     check_time = pd.to_datetime('7:30:00').time()
 
+    # 6655437078
     if opening_time > check_time:
-        bot.send_message(6655437078, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {opening_time}")
+        bot.send_message(507500572, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {str(opening_time)[:8]}")
 
 
 # --------------------START--------------------
