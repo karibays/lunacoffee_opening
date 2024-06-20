@@ -148,6 +148,8 @@ def save_survey_data_to_google_sheets(chat_id):
 
     values = [list(ordered_dict.values())]
 
+    Saver().save_user_data_manually(values)
+
     if not GoogleAPI().check_token_expicicy_and_refresh():
         logger.info("Token is valid")
     else:
@@ -164,7 +166,6 @@ def save_survey_data_to_google_sheets(chat_id):
     except:
         logger.error("Failed to save the data to google sheets!")
 
-    Saver().save_user_data_manually(values)
 
     if user_data[chat_id]['Статус'] == 'Отметка':
         notify_manager_about_late_opening(user_data[chat_id])

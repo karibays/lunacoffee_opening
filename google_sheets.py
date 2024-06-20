@@ -137,14 +137,14 @@ class GoogleAPI:
 if __name__ == "__main__":
     import time
 
-    # for i in range(100):
-    #     print('index:', i)
-    #     print(GoogleAPI().refresh_token())
-    #     time.sleep(2)
+    for i in range(100):
+        print('index:', i)
+        print(GoogleAPI().refresh_token())
+        time.sleep(2)
 
-    GoogleAPI().append_values(
-        spreadsheet_id="1zPZ0yC5iqtNpfFtmV_YJx2bEdvRcnukhplb3DQFUTqI",
-        range_name='A:Z',
-        value_input_option="USER_ENTERED",
-        values=[[1,2,3,4]],
-    ) # type: ignore
+    # GoogleAPI().append_values(
+    #     spreadsheet_id="1zPZ0yC5iqtNpfFtmV_YJx2bEdvRcnukhplb3DQFUTqI",
+    #     range_name='A:Z',
+    #     value_input_option="USER_ENTERED",
+    #     values=[[1,2,3,4]],
+    # )  type: ignore
