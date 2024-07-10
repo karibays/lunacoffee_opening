@@ -147,9 +147,8 @@ def save_survey_data_to_google_sheets(chat_id):
     ordered_dict = OrderedDict((key, user_data[chat_id][key]) for key in desired_order)
 
     values = [list(ordered_dict.values())]
-
     Saver().save_user_data_manually(values)
-
+    
     if not GoogleAPI().check_token_expicicy_and_refresh():
         logger.info("Token is valid")
     else:
@@ -166,6 +165,7 @@ def save_survey_data_to_google_sheets(chat_id):
     except:
         logger.error("Failed to save the data to google sheets!")
 
+    
 
     if user_data[chat_id]['Статус'] == 'Отметка':
         notify_manager_about_late_opening(user_data[chat_id])
@@ -181,7 +181,7 @@ def notify_manager_about_late_opening(values):
 
     # 6655437078
     if opening_time > check_time:
-        bot.send_message(6655437078, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {str(opening_time)[:8]}")
+        bot.send_message(507500572, f"!!!ОПОЗДАНИЕ!!!\n\nБариста: {name} {surname}\nТочка: {address}\nВремя: {str(opening_time)[:8]}")
 
 
 # --------------------START--------------------
