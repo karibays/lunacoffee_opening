@@ -24,7 +24,7 @@ def main():
     if text:
         payload = {
             'public_key': '22dc3a76017437d85401e95423154821',
-            'phone': '+77011994199',
+            'phone': '+77087023525',
             'campaign_id': '1124317061',
             'text': text
         }
