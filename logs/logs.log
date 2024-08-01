@@ -1,49 +1,57 @@
-2024-07-28 15:16:05.514 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-28 15:16:05.698 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-28 15:16:06.491 | WARNING  | google_sheets:check_token_expicicy_and_refresh:128 - Token has expired. Attempt: 0 to refresh it
-2024-07-28 15:16:07.481 | SUCCESS  | google_sheets:refresh_token:41 - Token has been successfully refreshed.
-2024-07-28 15:16:07.886 | SUCCESS  | google_sheets:check_token_expicicy_and_refresh:131 - Token has been succesfully refreshed
-2024-07-28 15:16:08.279 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-28 15:16:10.575 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:04:27.478 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:04:27.658 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:04:28.456 | WARNING  | google_sheets:check_token_expicicy_and_refresh:128 - Token has expired. Attempt: 0 to refresh it
-2024-07-29 02:04:29.298 | SUCCESS  | google_sheets:refresh_token:41 - Token has been successfully refreshed.
-2024-07-29 02:04:29.766 | SUCCESS  | google_sheets:check_token_expicicy_and_refresh:131 - Token has been succesfully refreshed
-2024-07-29 02:04:30.158 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:04:32.392 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:15:04.778 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:15:05.065 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:15:05.474 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:15:05.475 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:15:07.690 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:17:26.057 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:17:26.183 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:17:26.688 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:17:26.689 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:17:28.247 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:18:47.837 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:18:47.973 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:18:48.393 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:18:48.394 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:18:50.053 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:26:54.678 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:26:54.802 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:26:55.217 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:26:55.218 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:26:57.351 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:31:15.933 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:31:16.060 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:31:16.476 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:31:16.477 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:31:18.174 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:35:14.622 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:35:14.744 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:35:15.174 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:35:15.175 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:35:16.886 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
-2024-07-29 02:42:32.693 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
-2024-07-29 02:42:32.820 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
-2024-07-29 02:42:33.224 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
-2024-07-29 02:42:33.225 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
-2024-07-29 02:42:35.365 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-07-31 15:29:43.617 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-07-31 15:29:43.860 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-07-31 15:29:44.266 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-07-31 15:29:44.266 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-07-31 15:29:46.401 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 01:59:19.748 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 01:59:19.917 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 01:59:20.555 | WARNING  | google_sheets:check_token_expicicy_and_refresh:128 - Token has expired. Attempt: 0 to refresh it
+2024-08-01 01:59:21.287 | SUCCESS  | google_sheets:refresh_token:41 - Token has been successfully refreshed.
+2024-08-01 01:59:21.605 | SUCCESS  | google_sheets:check_token_expicicy_and_refresh:131 - Token has been succesfully refreshed
+2024-08-01 01:59:21.925 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 01:59:24.141 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 01:59:54.665 | INFO     | __main__:send_welcome:58 - User-1762569420 opened the chat
+2024-08-01 02:00:14.173 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 02:00:14.334 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 02:00:14.645 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 02:00:14.646 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 02:00:16.365 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 02:16:55.971 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 02:16:56.116 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 02:16:56.586 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 02:16:56.587 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 02:16:59.007 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 02:17:00.571 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 02:17:00.705 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 02:17:01.021 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 02:17:01.022 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 02:17:02.535 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 02:21:06.030 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 02:21:06.317 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 02:21:06.878 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 02:21:06.879 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 02:21:08.468 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 02:23:45.288 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 02:23:45.446 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 02:23:45.865 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 02:23:45.866 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 02:23:47.733 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 03:04:13.345 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 03:04:13.563 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 03:04:14.287 | WARNING  | google_sheets:check_token_expicicy_and_refresh:128 - Token has expired. Attempt: 0 to refresh it
+2024-08-01 03:04:15.027 | SUCCESS  | google_sheets:refresh_token:41 - Token has been successfully refreshed.
+2024-08-01 03:04:15.354 | SUCCESS  | google_sheets:check_token_expicicy_and_refresh:131 - Token has been succesfully refreshed
+2024-08-01 03:04:15.690 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 03:04:17.891 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 03:06:18.516 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 03:06:18.662 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 03:06:19.066 | INFO     | google_sheets:check_token_expicicy_and_refresh:124 - Token's current state: True
+2024-08-01 03:06:19.067 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 03:06:20.141 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
+2024-08-01 04:09:40.481 | INFO     | __main__:finish_survey:139 - Trying to save user data to the google sheets...
+2024-08-01 04:09:40.635 | SUCCESS  | save_data_manually:save_user_data_manually:16 - Saved user data manually.
+2024-08-01 04:09:41.301 | WARNING  | google_sheets:check_token_expicicy_and_refresh:128 - Token has expired. Attempt: 0 to refresh it
+2024-08-01 04:09:41.979 | SUCCESS  | google_sheets:refresh_token:41 - Token has been successfully refreshed.
+2024-08-01 04:09:42.305 | SUCCESS  | google_sheets:check_token_expicicy_and_refresh:131 - Token has been succesfully refreshed
+2024-08-01 04:09:42.632 | INFO     | __main__:save_survey_data_to_google_sheets:153 - Token is valid
+2024-08-01 04:09:45.079 | SUCCESS  | google_sheets:append_values:62 - 7 cells appended.
