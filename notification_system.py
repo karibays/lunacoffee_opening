@@ -7,7 +7,7 @@ def main():
     logger.info("Trying to call")
     df = pd.read_excel('data/reviews.xlsx')
 
-    addresses = ['Мәңгілік Ел 37', 'Мәңгілік Ел 40', 'Мухамедханова', 'Таха Хусейна 2/1', 'Тәуелсіздік 34']
+    addresses = ['Мәңгілік Ел 40', 'Мухамедханова', 'Таха Хусейна 2/1', 'Тәуелсіздік 34']
     opened_addresses = list(df[(df['Дата'] == str(datetime.datetime.now().date())) & (df['Статус'] == 'Отметка')]['Точка'].unique())
     non_opened_addresses = [element for element in addresses if element not in opened_addresses]
 
